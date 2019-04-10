@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  memcached1: 
+    image: memcached
+    restart: always
+    image: memcached
+    ports:
+      - "11211:11211"
+  memcached2: 
+    image: memcached
+    restart: always
+    image: memcached
+    ports:
+      - "11212:11211"    
+  memcached3: 
+    image: memcached
+    restart: always
+    image: memcached
+    ports:
+      - "11213:11211"            
+  api: 
+    build: ./api
+    restart: always
+    ports:
+      - "8001:3000"
+  seige:
+    build: ./seige
+    stdin_open: true
+    tty: true
+  
