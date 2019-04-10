@@ -10,6 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "chai": "^4.2.0",
+    "memcache-client": "^0.10.0",
+    "memcached": "^2.2.2",
+    "node-gyp": "^3.8.0",
+    "readline-sync": "^1.4.9"
   }
 }
