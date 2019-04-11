@@ -11,6 +11,23 @@ Validated in both stg0 and stg1
 
 const port              = 3000
 const multiServerOptions = {
+  server: {
+    servers: [
+      {
+        server: "localhost:8000",
+        maxConnections: 3
+      }
+    ],
+    config: {
+      cmdTimeout: 5 * 1000,
+      retryFailedServerInterval: 1000, // milliseconds - how often to check failed servers
+      failedServerOutTime: 1000, //5 * 60 * 1000, // (ms) how long a failed server should be out before retrying it
+      keepLastServer: false
+    }
+  }
+}
+/*
+const multiServerOptions = {
     server: {
       servers: [
         {
@@ -27,12 +44,14 @@ const multiServerOptions = {
         }
       ],
       config: {
+        cmdTimeout: 5 * 1000,
         retryFailedServerInterval: 1000, // milliseconds - how often to check failed servers
-        failedServerOutTime: 30000, // (ms) how long a failed server should be out before retrying it
+        failedServerOutTime: 1000, //5 * 60 * 1000, // (ms) how long a failed server should be out before retrying it
         keepLastServer: false
       }
     }
   }
+*/
 
 const singleServerOptions = {
     server: { 
@@ -48,35 +67,38 @@ const singleServerOptions = {
     //logger: require("./custom-logger")
   };
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     res.send('Memcached Benchmark');
 });
 
-app.get('/stats', (reg, res) => {
-    const client = new MemcacheClient(multiServerOptions);
-
-    client.cmd("stats").then((r) => { 
-        let html = 
-            '<ul>' + 
-            r.STAT.map( x => `<li>${x[0]}<ul><li>${x[1]}</li></ul></li>` ) +
-            '</ul>';
+app.get('/stats', async (reg, res) => {
+    try { 
+      const client = new MemcacheClient(multiServerOptions);
+      const r = await client.cmd("stats");
+      const html = 
+        '<ul>' + 
+        r.STAT.map( x => `<li>${x[0]}<ul><li>${x[1]}</li></ul></li>` ) +
+        '</ul>';
         
-        res.send( html );
-    });
+      res.send( html );
+    } catch ( ex ) {
+      console.error( ex );
+    }
 })
 
-app.get('/store-and-fetch', (req, res) => {
+app.get('/store-and-fetch', async (req, res) => {
+  try {
     const client = new MemcacheClient(multiServerOptions);
     const cacheData = `data : ${Date.now()}`;
-    
-    client.set("key", cacheData).then( (r) => {
-      expect(r).to.deep.equal(["STORED"]);
 
-      client.get("key").then( (data) => {
-        expect(data.value).to.equal(cacheData);
-        res.send(data.value);
-      });
-    });
+    //const setResult = await client.set("key", cacheData);
+    const getResult = await client.get("key");
+
+    res.send( getResult );
+
+  } catch( ex ) {
+    console.error( ex );
+  }
 });
 
 app.listen(port, () => console.log(`port ${port}`))

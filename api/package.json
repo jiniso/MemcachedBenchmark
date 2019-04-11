@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "benchmark": "siege -b  http://127.0.0.1:3000/store-and-fetch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
