@@ -13,15 +13,15 @@ const localServerOptions = {
   server: {
     servers: [
       {
-        server: "localhost:8000",
+        server:         "localhost:8000",
         maxConnections: 3
       }
     ],
     config: {
-      cmdTimeout: 5 * 1000,
-      retryFailedServerInterval: 1000,    // milliseconds - how often to check failed servers
-      failedServerOutTime: 5 * 60 * 1000, // (ms) how long a failed server should be out before retrying it
-      keepLastServer: true
+      cmdTimeout:                 5 * 1000,
+      retryFailedServerInterval:  1000,           // milliseconds - how often to check failed servers
+      failedServerOutTime:        5 * 60 * 1000,  // (ms) how long a failed server should be out before retrying it
+      keepLastServer:             true
     }
   }
 }
@@ -43,10 +43,10 @@ const multiServerOptions = {
       }
     ],
     config: {
-      cmdTimeout: 5 * 1000,
-      retryFailedServerInterval: 1000, // milliseconds - how often to check failed servers
-      failedServerOutTime: 1000, //5 * 60 * 1000, // (ms) how long a failed server should be out before retrying it
-      keepLastServer: false
+      cmdTimeout:                 5 * 1000,
+      retryFailedServerInterval:  1000,           // milliseconds - how often to check failed servers
+      failedServerOutTime:        5 * 60 * 1000,  // (ms) how long a failed server should be out before retrying it
+      keepLastServer:             false
     }
   }
 }
