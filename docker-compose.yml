@@ -18,14 +18,14 @@ services:
     restart: always
     image: memcached
     ports:
-      - "5002:11211"            
+      - "5002:11211"           
   #api: 
   #  build: ./api
   #  restart: always
   #  ports:
   #    - "8001:3000"
-  seige:
-    build: ./seige
-    stdin_open: true
-    tty: true
+  #siege:
+  #  build: ./seige
+  #  stdin_open: true
+  #  tty: true
   

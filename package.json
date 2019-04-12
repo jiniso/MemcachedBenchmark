@@ -4,7 +4,10 @@
   "description": "Test to benchmarch Memchached configuration for connection issues",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "docker-compose up --force-recreate --build -d",
+    "stop": "docker-compose down",
+    "start-api": "node ./api/app.js", 
+    "test": "siege -b 127.0.0.1:3000/store-and-fetch" 
   },
   "author": "",
   "license": "ISC"
