@@ -6,8 +6,10 @@
   "scripts": {
     "start": "docker-compose up --force-recreate --build -d",
     "stop": "docker-compose down",
-    "start-api": "node ./api/app.js", 
-    "test": "siege -b 127.0.0.1:3000/store-and-fetch" 
+    "start-new": "node ./api/app.js", 
+    "start-old": "node ./api/app-old.js", 
+    "test-new": "siege -b -t30M 127.0.0.1:3000/store-and-fetch",
+    "test-old": "siege -b -t30M 127.0.0.1:3001/store-and-fetch" 
   },
   "author": "",
   "license": "ISC"
