@@ -44,9 +44,9 @@ const multiServerOptions = {
     ],
     config: {
       cmdTimeout:                 5 * 1000,
-      retryFailedServerInterval:  5 * 60 * 1000,           // milliseconds - how often to check failed servers
+      retryFailedServerInterval:  5 * 60 * 1000,  // milliseconds - how often to check failed servers
       failedServerOutTime:        5 * 60 * 1000,  // (ms) how long a failed server should be out before retrying it
-      keepLastServer:             false,
+      keepLastServer:             true,
       dangleSocketWaitTimeout:    5 * 1000        // time to wait for events on dangle socket
     }
   }
@@ -99,6 +99,8 @@ app.get('/store-and-fetch', async (req, res) => {
 
   } catch( ex ) {
     console.error( ex );
+    res.status(400);
+    res.send( ex );
   }
 });
 

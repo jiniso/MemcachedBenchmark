@@ -8,7 +8,7 @@
     "stop": "docker-compose down",
     "start-new": "node ./api/app.js", 
     "start-old": "node ./api/app-old.js", 
-    "test-new": "siege -b -t30M 127.0.0.1:3000/store-and-fetch",
+    "test-new": "siege -b -t5M 127.0.0.1:3000/store-and-fetch",
     "test-old": "siege -b -t30M 127.0.0.1:3001/store-and-fetch" 
   },
   "author": "",
