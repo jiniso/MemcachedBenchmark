@@ -1,0 +1,30 @@
+
+> memcachedtesting@1.0.0 hey-new C:\projects\WalmatLabs\MemcachedBenchmark
+> hey -z 30s -c 5 http://localhost:3000/store-and-fetch
+
+
+Summary:
+  Total:	31.2623 secs
+  Slowest:	0.0000 secs
+  Fastest:	0.0000 secs
+  Average:	 NaN secs
+  Requests/sec:	3.8385
+  
+
+Response time histogram:
+
+
+Latency distribution:
+
+Details (average, fastest, slowest):
+  DNS+dialup:	 NaN secs, 0.0000 secs, 0.0000 secs
+  DNS-lookup:	 NaN secs, 0.0000 secs, 0.0000 secs
+  req write:	 NaN secs, 0.0000 secs, 0.0000 secs
+  resp wait:	 NaN secs, 0.0000 secs, 0.0000 secs
+  resp read:	 NaN secs, 0.0000 secs, 0.0000 secs
+
+Status code distribution:
+
+Error distribution:
+  [120]	Get http://localhost:3000/store-and-fetch: dial tcp [::1]:3000: connectex: No connection could be made because the target machine actively refused it.
+

@@ -1,30 +1,13 @@
-const express           = require('express')
-const app               = express()
+const express           = require('express');
 const MemcacheClient    = require("memcache-client");
 const expect            = require("chai").expect;
+const app               = express();
 
 /*
 A bailout should occur within 5s (configurable)
 Bailouts should ensure the connection is not reused/verified until at least 5m (configurable) after.
 Validated in both stg0 and stg1
 */
-
-const localServerOptions = {
-  server: {
-    servers: [
-      {
-        server:         "localhost:8000",
-        maxConnections: 3
-      }
-    ],
-    config: {
-      cmdTimeout:                 5 * 1000,
-      retryFailedServerInterval:  1000,           // milliseconds - how often to check failed servers
-      failedServerOutTime:        5 * 60 * 1000,  // (ms) how long a failed server should be out before retrying it
-      keepLastServer:             true
-    }
-  }
-}
 
 const multiServerOptions = {
   server: {
@@ -43,25 +26,15 @@ const multiServerOptions = {
       }
     ],
     config: {
-      cmdTimeout:                 5 * 1000,
+      cmdTimeout:                 3 * 1000,
       retryFailedServerInterval:  5 * 60 * 1000,  // milliseconds - how often to check failed servers
-      failedServerOutTime:        5 * 60 * 1000,  // (ms) how long a failed server should be out before retrying it
-      keepLastServer:             true,
-      dangleSocketWaitTimeout:    5 * 1000        // time to wait for events on dangle socket
+      failedServerOutTime:        5 * 60 * 1000  // (ms) how long a failed server should be out before retrying it
+      //keepLastServer:             true,
+      //dangleSocketWaitTimeout:    5 * 1000        // time to wait for events on dangle socket
     }
   }
 }
-
-/*
-{
-        "url":"http://modulator.walmart.com/collection/manual_shelves?tenant=walmart&filter=holiday",
-        "minimumInputLength":3,
-        "rootNode":"manualShelves",
-        "keyAttr": "id",
-        "valueAttr": "name"
-    }
-*/
-
+ 
 const port              = 3000
 const client            = new MemcacheClient(multiServerOptions);
 

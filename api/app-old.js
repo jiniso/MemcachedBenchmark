@@ -1,8 +1,15 @@
 const express           = require('express')
 const app               = express()
 const MemcacheClient    = require("memcache-client");
+const expect            = require("chai").expect;
 
-const newServerOptions = {
+/*
+A bailout should occur within 5s (configurable)
+Bailouts should ensure the connection is not reused/verified until at least 5m (configurable) after.
+Validated in both stg0 and stg1
+*/
+
+const multiServerOptions = {
   server: {
     servers: [
       {
@@ -20,9 +27,9 @@ const newServerOptions = {
     ]
   }
 }
-
+ 
 const port              = 3001
-const client            = new MemcacheClient(newServerOptions);
+const client            = new MemcacheClient(multiServerOptions);
 
 app.get('/', async (req, res) => {
     res.send('Memcached Benchmark');
@@ -58,6 +65,8 @@ app.get('/store-and-fetch', async (req, res) => {
 
   } catch( ex ) {
     console.error( ex );
+    res.status(400);
+    res.send( ex );
   }
 });
 

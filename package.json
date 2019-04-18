@@ -6,11 +6,17 @@
   "scripts": {
     "start": "docker-compose up --force-recreate --build -d",
     "stop": "docker-compose down",
-    "start-new": "node ./api/app.js", 
-    "start-old": "node ./api/app-old.js", 
-    "test-new": "siege -b -t5M 127.0.0.1:3000/store-and-fetch",
-    "test-old": "siege -b -t30M 127.0.0.1:3001/store-and-fetch" 
+    "start-new": "node ./api/app.js",
+    "start-old": "node ./api/app-old.js",
+    "siege-new": "siege -b -t5M 127.0.0.1:3000/store-and-fetch",
+    "siege-old": "siege -b -t30M 127.0.0.1:3001/store-and-fetch",
+    "hey-new": "hey -z 30s -c 5 http://localhost:3000/store-and-fetch",
+    "hey-old": "hey -z 30s -c 5 http://localhost:3001/store-and-fetch"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "memcache-client": "^0.10.1"
+  }
 }
