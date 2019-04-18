@@ -1,0 +1,52 @@
+
+> memcachedtesting@1.0.0 hey-new C:\projects\WalmatLabs\MemcachedBenchmark
+> hey -z 30s -c 5 http://localhost:3000/store-and-fetch
+
+
+Summary:
+  Total:	30.0019 secs
+  Slowest:	1.0044 secs
+  Fastest:	0.0009 secs
+  Average:	0.0018 secs
+  Requests/sec:	2347.8504
+  
+  Total data:	6591016 bytes
+  Size/request:	93 bytes
+
+Response time histogram:
+  0.001 [1]	|
+  0.101 [70429]	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.202 [5]	|
+  0.302 [0]	|
+  0.402 [0]	|
+  0.503 [0]	|
+  0.603 [0]	|
+  0.703 [0]	|
+  0.804 [0]	|
+  0.904 [0]	|
+  1.004 [4]	|
+
+
+Latency distribution:
+  10% in 0.0014 secs
+  25% in 0.0015 secs
+  50% in 0.0017 secs
+  75% in 0.0019 secs
+  90% in 0.0023 secs
+  95% in 0.0025 secs
+  99% in 0.0034 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0000 secs, 0.0009 secs, 1.0044 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0039 secs
+  req write:	0.0000 secs, 0.0000 secs, 0.0011 secs
+  resp wait:	0.0018 secs, 0.0008 secs, 1.0043 secs
+  resp read:	0.0000 secs, 0.0000 secs, 0.0047 secs
+
+Status code distribution:
+  [200]	70413 responses
+  [400]	26 responses
+
+Error distribution:
+  [1]	Get http://localhost:3000/store-and-fetch: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+

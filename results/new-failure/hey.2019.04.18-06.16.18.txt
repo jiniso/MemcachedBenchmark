@@ -1,0 +1,51 @@
+
+> memcachedtesting@1.0.0 hey-new C:\projects\WalmatLabs\MemcachedBenchmark
+> hey -z 30s -c 5 http://localhost:3000/store-and-fetch
+
+
+Summary:
+  Total:	30.0028 secs
+  Slowest:	1.0149 secs
+  Fastest:	0.0009 secs
+  Average:	0.0020 secs
+  Requests/sec:	2486.9048
+  
+  Total data:	7021628 bytes
+  Size/request:	94 bytes
+
+Response time histogram:
+  0.001 [1]	|
+  0.102 [74603]	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.204 [5]	|
+  0.305 [0]	|
+  0.407 [0]	|
+  0.508 [0]	|
+  0.609 [0]	|
+  0.711 [0]	|
+  0.812 [0]	|
+  0.913 [0]	|
+  1.015 [5]	|
+
+
+Latency distribution:
+  10% in 0.0015 secs
+  25% in 0.0016 secs
+  50% in 0.0018 secs
+  75% in 0.0021 secs
+  90% in 0.0025 secs
+  95% in 0.0028 secs
+  99% in 0.0038 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0000 secs, 0.0009 secs, 1.0149 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0035 secs
+  req write:	0.0000 secs, 0.0000 secs, 0.0047 secs
+  resp wait:	0.0019 secs, 0.0009 secs, 1.0148 secs
+  resp read:	0.0000 secs, 0.0000 secs, 0.0022 secs
+
+Status code distribution:
+  [200]	74590 responses
+  [400]	24 responses
+
+
+

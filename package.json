@@ -10,8 +10,8 @@
     "start-old": "node ./api/app-old.js",
     "siege-new": "siege -b -t5M 127.0.0.1:3000/store-and-fetch",
     "siege-old": "siege -b -t30M 127.0.0.1:3001/store-and-fetch",
-    "hey-new": "hey -z 30s -c 5 http://localhost:3000/store-and-fetch",
-    "hey-old": "hey -z 30s -c 5 http://localhost:3001/store-and-fetch"
+    "hey-new": "hey -z 30s -n 50 -c 50 http://localhost:3000/store-and-fetch",
+    "hey-old": "hey -z 30s -n 50 -c 50 http://localhost:3001/store-and-fetch"
   },
   "author": "",
   "license": "ISC",

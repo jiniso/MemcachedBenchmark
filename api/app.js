@@ -26,7 +26,7 @@ const multiServerOptions = {
       }
     ],
     config: {
-      cmdTimeout:                 3 * 1000,
+      cmdTimeout:                 2 * 1000,
       retryFailedServerInterval:  5 * 60 * 1000,  // milliseconds - how often to check failed servers
       failedServerOutTime:        5 * 60 * 1000  // (ms) how long a failed server should be out before retrying it
       //keepLastServer:             true,
